@@ -1,0 +1,374 @@
+
+{% load static %}
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title>Teora</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Serviços rápidos para facilitar seu dia!" />
+
+    <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet" media="screen" />
+
+    <link rel="stylesheet" media="screen" href="{% static '/css/gsdk.css' %}" />
+
+    <link rel="stylesheet" media="screen" href="{% static '/css/demo.css' %}" />
+
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Grand+Hotel|Open+Sans:400,300" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" media="screen" href="{% static '/css/pe-icon-7-stroke.css' %}" />
+
+    <script src="{% static '/js/jquery.min.js' %}"></script>
+
+	<script src="{% static '/js/bootstrap.js' %}"></script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-ct-silver navbar-fixed-top" role="navigation" style="position:absolute; margin-bottom: 0px;">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button id="menu-toggle" type="button" class="navbar-toggle">
+                <span class="sr-only">Navegação</span>
+                <span class="icon-bar bar1"></span>
+                <span class="icon-bar bar2"></span>
+                <span class="icon-bar bar3"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img src="{% static '/img/logoSite_youSeg.png' %}" alt="" width="156px" style="margin-top: -13px;" />
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Sobre a youSeg
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/termos/">Termos e condições de uso</a></li>
+                    </ul>
+                </li>
+                <li><a href="/contato/">Contato</a></li>
+            </ul>
+
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+
+</nav>
+
+<div class="wrapper">
+    <div class="parallax">
+        <div class="parallax-image">
+        </div>
+
+        <div class="motto">
+            <h3 class="tituloCep">
+				Encontre especialistas em informática, segurança eletrônica, telefonia e elétrica.
+            </h3>
+            <h3 class="tituloCep" style="font-size: 20px; margin-top:0px;">
+				Para as horas que você mais precisar.
+            </h3>
+            <div class="boxCep">
+                <div class="row">
+                    <div class="col-md-12">
+                            <div class="form-group">
+								<p><strong>Selecione a cidade que deseja atendimento:</strong></p>
+								<select class="form-control" id="selectCidade" onchange="selectedCidade();" style="font-size: 16px;">
+								  <option value="0">Selecione a cidade...</option>
+								  <option value="ribeirao-preto">Ribeirão Preto</option>
+								  <option value="serrana">Serrana</option>
+								  <option value="sertaozinho">Sertãozinho</option>
+								  <option value="franca">Franca</option>
+								  <option value="serra-azul">Serra Azul</option>
+								  <option value="viradouro">Viradouro</option>
+								  <option value="pitangueiras">Pitangueiras</option>
+								  <option value="pontal">Pontal</option>
+								  <option value="luiz-antonio">Luis Antônio</option>
+								  <option value="jardinopolis">Jardinópolis</option>
+								  <option value="cravinhos">Cravinhos</option>
+								  <option value="sao-simao">São Simão</option>
+								  <option value="santa-rosa-de-viterbo">Santa Rosa de Viterbo</option>
+								  <option value="pocos-de-caldas">Poços de Caldas</option>
+								  <option value="juruce">Jurucê</option>
+								  <option value="brodowski">Brodowski</option>
+								  <option value="santa-barbara-doeste">Santa Bárbara D&#39;Oeste</option>
+								  <option value="americana">Americana</option>
+								  <option value="campinas">Campinas</option>
+								</select>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div id="flow"></div>
+        </div>
+        <div class="arrow-down">
+            <div>
+                <a href="#flow">
+                    <i class="arrow pe-7s-angle-down"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <div class="clients-presentation">
+	            <hr />
+	            <h3 align="center">Para as horas que você mais precisar. Veja como funciona.</h3>
+	            <hr />
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="info">
+                            <div class="icon icon-azure">
+                                <i class="pe-7s-map-marker"></i>
+                            </div>
+                            <div class="description">
+                                <h4>Escolha a cidade onde você deseja ser atendido</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="info">
+                            <div class="icon icon-azure">
+                                <i class="pe-7s-search"></i>
+                            </div>
+                            <div class="description">
+                                <h4>Busque pelo serviço que está precisando</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="info">
+                            <div class="icon icon-azure">
+                                <i class="pe-7s-medal"></i>
+                            </div>
+                            <div class="description">
+                                <h4>Encontre profissionais disponíveis</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="info">
+                            <div class="icon icon-azure">
+                                <i class="pe-7s-like2"></i>
+                            </div>
+                            <div class="description">
+                                <h4>Avalie o serviço prestado e ajude-nos a melhorar</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end section meet our clients -->
+
+
+    <div class="section section-gray" id="footers">
+
+        <footer class="footer footer-big footer-transparent" style="background-image: url('{% static '/img/footer01.jpg' %}')">
+
+            <!-- .footer-black is another class for the footer, for the transparent version, we recommend you to change the url of the image with your favourite image.          -->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-md-offset-1">
+                        <h5 class="title">youSeg</h5>
+                        <nav>
+                            <ul>
+		                        <li><a href="/termos/">Termos e condições de uso</a></li>
+				                <li><a href="/contato/">Contato</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-md-3 col-md-offset-1">
+                        <h5 class="title">Categorias de serviços</h5>
+                        <nav>
+                            <ul>
+                            	<th>
+	                                <li><span style="color: #9A9A9A"><th>Informática</th></span></li>
+                            	</th>
+                            	<th>
+	                                <li><span style="color: #9A9A9A"><th>CFTV</th></span></li>
+                            	</th>
+                            	<th>
+	                                <li><span style="color: #9A9A9A"><th>Alarme</th></span></li>
+                            	</th>
+                            	<th>
+	                                <li><span style="color: #9A9A9A"><th>Controle de Acesso</th></span></li>
+                            	</th>
+                            	<th>
+	                                <li><span style="color: #9A9A9A"><th>Elétrica</th></span></li>
+                            	</th>
+                            	<th>
+	                                <li><span style="color: #9A9A9A"><th>Hidráulica</th></span></li>
+                            	</th>
+                            	<th>
+	                                <li><span style="color: #9A9A9A"><th>Alvenaria</th></span></li>
+                            	</th>
+                            	<th>
+	                                <li><span style="color: #9A9A9A"><th>Serralheria</th></span></li>
+                            	</th>
+                            	<th>
+	                                <li><span style="color: #9A9A9A"><th>Ferragem</th></span></li>
+                            	</th>
+                            	<th>
+	                                <li><span style="color: #9A9A9A"><th>Ar condicionado</th></span></li>
+                            	</th>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-md-3 col-md-offset-1">
+                        <h5 class="title">Área de cobertura</h5>
+                        <nav class="numbers">
+                        	<ul>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=ribeirao-preto"><th>Ribeirão Preto</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=serrana"><th>Serrana</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=sertaozinho"><th>Sertãozinho</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=franca"><th>Franca</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=serra-azul"><th>Serra Azul</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=viradouro"><th>Viradouro</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=pitangueiras"><th>Pitangueiras</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=pontal"><th>Pontal</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=luiz-antonio"><th>Luis Antônio</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=jardinopolis"><th>Jardinópolis</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=cravinhos"><th>Cravinhos</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=sao-simao"><th>São Simão</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=santa-rosa-de-viterbo"><th>Santa Rosa de Viterbo</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=pocos-de-caldas"><th>Poços de Caldas</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=juruce"><th>Jurucê</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=brodowski"><th>Brodowski</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=santa-barbara-doeste"><th>Santa Bárbara D&#39;Oeste</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=americana"><th>Americana</th></a></li>
+                                </th>
+                        		<th>
+                                	<li><a href="/prestadores?cidade=campinas"><th>Campinas</th></a></li>
+                                </th>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <hr />
+                <div class="social-area text-center">
+                    <h5>Siga-nos nos links abaixo </h5>
+                    <a href="https://www.facebook.com/voceseg/" target="_blank" class="btn btn-social btn-round">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/voceseguro/" target="_blank" class="btn btn-social btn-round">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                    <a href="https://plus.google.com/u/0/107761337422012203268/about" target="_blank" class="btn btn-social btn-round">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/10323729" target="_blank" class="btn btn-social btn-round">
+                        <i class="fa fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCmqn6C-8WyHuBuW82fH9kew" target="_blank" class="btn btn-social btn-round">
+                        <i class="fa fa-youtube"></i>
+                    </a>
+                </div>
+
+                <div class="copyright">
+                    © Copyright 2016 - Todos os direitos reservados para youSeg
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</div>
+<!-- end wrapper -->
+
+<!-- </div> -->
+
+</body>
+
+<!--  jQuery and Bootstrap core files    -->
+<script type="text/javascript" src="{% static '/js/jquery-ui.custom.min.js' %}"></script>
+
+<!--  Plugins -->
+<script src="{% static '/js/gsdk-checkbox.js' %}"></script>
+<script src="{% static '/js/gsdk-morphing.js' %}"></script>
+<script src="{% static '/js/gsdk-radio.js' %}"></script>
+<script src="{% static '/js/gsdk-bootstrapswitch.js' %}"></script>
+<script src="{% static '/js/bootstrap-select.js' %}"></script>
+<script src="{% static '/js/bootstrap-datepicker.js' %}"></script>
+<script src="{% static '/js/chartist.min.js' %}"></script>
+<script src="{% static '/js/jquery.tagsinput.js' %}"></script>
+<script src="{% static '/js/login-register.js' %}"></script>
+<script src="{% static '/js/jquery.mask.min.js' %}"></script>
+<script src="{% static '/js/search.js' %}"></script>
+
+<!--  Get Shit Done Kit PRO Core javascript 	 -->
+<script src="{% static '/js/main.js' %}"></script>
+
+<!--  Get Shit Done Kit PRO methods used for demo purpose      -->
+<script src="{% static '/js/custom.js' %}"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80192282-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+	<script type="text/javascript">
+		function selectedCidade() {
+			var selectBox = document.getElementById("selectCidade");
+			var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+			if (selectedValue != 0) {
+				document.location.href = "prestadores?cidade=" + selectedValue;
+			}
+		}
+	</script>
+</html>
