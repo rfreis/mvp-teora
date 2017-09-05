@@ -84,28 +84,12 @@
                 <div class="row">
                     <div class="col-md-12">
                             <div class="form-group">
-								<p><strong>Selecione a cidade que deseja atendimento:</strong></p>
-								<select class="form-control" id="selectCidade" onchange="selectedCidade();" style="font-size: 16px;">
-								  <option value="0">Selecione a cidade...</option>
-								  <option value="ribeirao-preto">Ribeirão Preto</option>
-								  <option value="serrana">Serrana</option>
-								  <option value="sertaozinho">Sertãozinho</option>
-								  <option value="franca">Franca</option>
-								  <option value="serra-azul">Serra Azul</option>
-								  <option value="viradouro">Viradouro</option>
-								  <option value="pitangueiras">Pitangueiras</option>
-								  <option value="pontal">Pontal</option>
-								  <option value="luiz-antonio">Luis Antônio</option>
-								  <option value="jardinopolis">Jardinópolis</option>
-								  <option value="cravinhos">Cravinhos</option>
-								  <option value="sao-simao">São Simão</option>
-								  <option value="santa-rosa-de-viterbo">Santa Rosa de Viterbo</option>
-								  <option value="pocos-de-caldas">Poços de Caldas</option>
-								  <option value="juruce">Jurucê</option>
-								  <option value="brodowski">Brodowski</option>
-								  <option value="santa-barbara-doeste">Santa Bárbara D&#39;Oeste</option>
-								  <option value="americana">Americana</option>
-								  <option value="campinas">Campinas</option>
+								<p><strong>Selecione a atividade que deseja praticar:</strong></p>
+								<select class="form-control" id="selectAtividade" onchange="selectedAtividade();" style="font-size: 16px;">
+								  <option value="0">Selecione a atividade...</option>
+                  {% for atv in atividade %}
+								  <option value="{{atv.slug}}">{{atv.nome}}</option>
+                  {% endfor %}
 								</select>
                             </div>
                     </div>
@@ -363,11 +347,11 @@
 </script>
 
 	<script type="text/javascript">
-		function selectedCidade() {
-			var selectBox = document.getElementById("selectCidade");
+		function selectedAtividade() {
+			var selectBox = document.getElementById("selectAtividade");
 			var selectedValue = selectBox.options[selectBox.selectedIndex].value;
 			if (selectedValue != 0) {
-				document.location.href = "prestadores?cidade=" + selectedValue;
+				document.location.href = "/atividade/ver/" + selectedValue + "/";
 			}
 		}
 	</script>

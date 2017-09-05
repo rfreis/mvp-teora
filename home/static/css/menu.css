@@ -25452,7 +25452,6 @@ button.ui-button.ui-widget {
 .searchBarFilter {
     width: 100%;
     z-index: 500;
-    max-width: 923px;
     margin: auto;
     overflow: hidden;
     padding-top: 10px;

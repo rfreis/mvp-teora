@@ -139,19 +139,18 @@
     color: #fff;
 }
 .container_source {
-    max-width: 800px;
     float: left;
     display: inline;
     width: 100%;
 }
 .content_source {
     display: block;
-    position: relative; 
-    border: solid 1px #c5c5c5; 
-    border-radius: 8px; 
-    height: 45px; 
-    overflow: hidden; 
-    background: #fff; 
+    position: relative;
+    border: solid 1px #c5c5c5;
+    border-radius: 8px;
+    height: 45px;
+    overflow: hidden;
+    background: #fff;
     padding: 0 1%;
 }
 .source_list {
@@ -168,11 +167,11 @@
     color: #333;
 }
 .btn_source {
-    width: 12%; 
-    height: 45px; 
-    position: relative; 
-    float: right; 
-    margin: -1px -6px 0 0; 
+    width: 12%;
+    height: 45px;
+    position: relative;
+    float: right;
+    margin: -1px -6px 0 0;
     border-color: transparent;
 }
 .btn_search {
@@ -231,8 +230,7 @@ a .box_categ:hover {
 .top_bay {
     background-color: #EDA901;
     position: relative;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-radius: 5px;
     top: -10px;
 }
 .top_bay i {
@@ -255,7 +253,7 @@ a .box_categ:hover {
     font-weight: 600;
     line-height: 22px;
     padding: 0;
-    padding: 10px 0 10px 70px;
+    padding: 15px 0;
 }
 .top_bay .box_text h2 small {
     display: block;
@@ -335,7 +333,7 @@ container_list {
 	background-color: #eda901;
 	color: #fff;
 	font-size:18px;
-	
+
 }
 .btn-youseg.focus,.btn-youseg:focus
 {

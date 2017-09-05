@@ -82,7 +82,7 @@
 	            <div class="card card-name">
    	                <div class="row">
                         <div class="col-md-12" style="vertical-align: middle;">
-                            <h5 style="text-align: center; text-transform: uppercase; margin-bottom: 10px !important;"><strong><th>Lopes informática</th></strong></h5>
+                            <h5 style="text-align: center; text-transform: uppercase; margin-bottom: 10px !important;"><strong><th>{{atividade.nome}}</th></strong></h5>
                          </div>
 	                </div>
 	            </div>
@@ -90,402 +90,59 @@
 	                <div class="row">
 	                    <div class="col-md-4" align="center">
 	                        <div class="image_services">
-	                            <img src="img/prestadores/lopes_informatica.png" />
+	                            <img src="{{atividade.get_foto_url}}" />
 	                        </div>
 	                    </div>
-	                    <div class="col-md-5">
+	                    <div class="col-md-8">
 	                        <div style="margin: 20px 0 0 0;">
 	                            <div style="margin-top: 5px;">
 	                                <div class="col-md-12">
-		                            	<p align="justify"><th>A Lopes Informática é uma empresa a mais de 10 anos no mercado, localizada na cidade de Ribeirão Preto-SP. É uma empresa no ramo de informática e tecnologia que tem como objetivo prestar assistência técnica especializada, oferecendo aos nossos clientes, rapidez, confiança e acima de tudo honestidade. Dispomos de ampla experiência e conhecimento na solução de problemas do setor.</th></p>
+		                            	<p align="justify"><th>{{atividade.descricao}}</th></p>
 	                                </div>
 	                            </div>
 
-	                        </div>
-	                    </div>
-	                    <div class="col-md-3">
-	                        <div class="prop-prestador">
-	                            <div class="">
-	                                <div class="stats">
-	                                    <div class="card-link">
-
-							                <th>
-								            	<i class="fa fa-power-off" style="color: #22b14c;"></i> <span style="color: #22b14c;">Disponível</span>
-								            </th>
-	                                    </div>
-	                                </div>
-	                                <div class="stats" style="margin-top: 10px;">
-	                                    <div class="card-link">
-	                                        <i class="fa fa-clock-o"></i> <th>30 min</th>
-	                                    </div>
-	                                </div>
-	                                <div class="stats" style="margin-top: 10px;">
-	                                    <div class="card-link">
-	                                        <i class="fa fa-map-marker"></i> <th>Rua Marechal Deodoro, 138</th>, <th>Centro</th>, <th>Ribeirão Preto</th>
-	                                    </div>
-	                                </div>
-	                                <div class="stats" style="margin-top: 10px;">
-	                                    <div class="card-link">
-	                                        <i class="fa fa-male"></i> <th>Daudt Costa Junior</th>
-	                                    </div>
-	                                </div>
-	                                <div class="stats" style="margin-top: 10px;">
-	                                    <div class="card-link">
-	                                        <i class="fa fa-star" style="color:#ffc90e"></i> <th>0.0</th>
-	                                    </div>
-	                                </div>
-	                            </div>
 	                        </div>
 	                    </div>
 	                </div>
-					<ul class="prestador-home-content-buttons" style="margin: 15px 0 0 0;">
-						<li id="showMenu" class="active"><i class="fa fa-gear"></i> <h3>Serviços</h3></li>
-						<li id="showRating" class=""><i class="fa fa-comments"></i> <h3>Avaliações (<th>0</th>)</h3></li>
-					</ul>
 	            </div>
 	            <!-- end card -->
 	        </div>
 			<div class="col-md-12" id="divContentArea">
-			    <div class="car container_bay">
-			        <div class="top_bay">
-			            <i></i>
-			            <a class="box_text" href="/realizarPedido?idPrestador=1">
-			                <h2>
-			                    Solicitar orçamento
-			                    <small>Contrate os serviços</small>
-			                </h2>
-			            </a>
-			        </div>
-			    </div>
 			    <div class="container_source">
 			         <div class="info prestador-home-content active" id="menuContent">
-				        <form action="">
-				            <div style="margin-bottom: 20px;">
-				                <div class="content_source">
-				                    <input class="source_list" type="text" placeholder="Digite aqui o nome do serviço que deseja..." name="searchFilterField" id="searchFilterField" />
-				                    <input class="btn_search" />
-				                </div>
-				            </div>
-				        </form>
 				        <div id="divCategorias">
 				        <th>
 			            <div class="" id="nav-filter-53HL">
 			                <div class="headline ">
-			                    <h3><th>Informática</th></h3>
+			                    <h3>Horários e Valores</h3>
 			                </div>
-			        		<th>
-				        		<th>
-                                    <div class="inline-popup">
-                                        <div class="result-text clearfix">
-                                            <div class="col-md-10" style="text-align: left;">
-                                                <h4 style="margin-top: 5px"><th>Formatação em microcomputador</th></h4>
-                                                <p style="margin-bottom: 15px"><th>Salvamento de dados e instalação de sistema operacional; Adicional: busca e entrega do micro computador por R$30,00 (não incluso no preço final)</th></p>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <p style="margin-top: 5px; font-size: 13px;">A partir de</p>
-                                                <p style="margin-bottom: 15px"><strong>R$ <th>90.00</th></strong></p>
-                                            </div>
-                                        </div>
+                      <div class="inline-popup">
+                        {% for info in atividade_info %}
+                          <div class="result-text clearfix">
+                              <div class="col-md-8" style="text-align: left;">
+                                  <h4 style="margin-top: 5px"><th>{{info.horario}}</th></h4>
+                                  <p style="margin-bottom: 15px"><th>{{info.endereco}}</th></p>
+                              </div>
+                              <div class="col-md-2">
+                                {% if info.valor > 0 %}
+                                  <p style="font-size: 13px;">A partir de</p>
+                                  <p><strong>R$ <th>{{info.valor}}</th></strong></p>
+                                {% else %}
+                                  <p style="margin-top: 20px;"><strong>Gratuito</strong></p>
+                                {% endif %}
+                              </div>
+                              <div class="col-md-2" style="margin-top: -15px;">
+                                    <div class="top_bay">
+                                        <a class="box_text" href="/linkparaagendamento">
+                                            <h2>Inscreva-se!</h2>
+                                        </a>
                                     </div>
-	                    		</th>
-			        		</th>
-			        		<th>
-				        		<th>
-                                    <div class="inline-popup">
-                                        <div class="result-text clearfix">
-                                            <div class="col-md-10" style="text-align: left;">
-                                                <h4 style="margin-top: 5px"><th>Formatação em notebook</th></h4>
-                                                <p style="margin-bottom: 15px"><th>Salvamento de dados, instalação de sistema operacional e limpeza de cooler. Adicional: busca e entrega do micro computador por R$30,00 (não incluso no preço final)</th></p>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <p style="margin-top: 5px; font-size: 13px;">A partir de</p>
-                                                <p style="margin-bottom: 15px"><strong>R$ <th>120.00</th></strong></p>
-                                            </div>
-                                        </div>
-                                    </div>
-	                    		</th>
-			        		</th>
-			        		<th>
-				        		<th>
-                                    <div class="inline-popup">
-                                        <div class="result-text clearfix">
-                                            <div class="col-md-10" style="text-align: left;">
-                                                <h4 style="margin-top: 5px"><th>Chamado técnico</th></h4>
-                                                <p style="margin-bottom: 15px"><th>Visita para verificação e correção de problemas diversos referentes a informática (internet não funcional, instalação de roteador, configuração de impressora, entre outros)</th></p>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <p style="margin-top: 5px; font-size: 13px;">A partir de</p>
-                                                <p style="margin-bottom: 15px"><strong>R$ <th>90.00</th></strong></p>
-                                            </div>
-                                        </div>
-                                    </div>
-	                    		</th>
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			            </div>
-			            </th>
-				        <th>
-			            <div class="" id="nav-filter-53HL">
-			                <div class="headline ">
-			                    <h3><th>CFTV</th></h3>
-			                </div>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-				        		<th>
-                                    <div class="inline-popup">
-                                        <div class="result-text clearfix">
-                                            <div class="col-md-10" style="text-align: left;">
-                                                <h4 style="margin-top: 5px"><th>Instalação de câmeras de segurança</th></h4>
-                                                <p style="margin-bottom: 15px"><th>Ponto novo com passagem de cabeamento</th></p>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <p style="margin-top: 5px; font-size: 13px;">A partir de</p>
-                                                <p style="margin-bottom: 15px"><strong>R$ <th>150.00</th></strong></p>
-                                            </div>
-                                        </div>
-                                    </div>
-	                    		</th>
-			        		</th>
-			        		<th>
-				        		<th>
-                                    <div class="inline-popup">
-                                        <div class="result-text clearfix">
-                                            <div class="col-md-10" style="text-align: left;">
-                                                <h4 style="margin-top: 5px"><th>Instalação e configuração DVR</th></h4>
-                                                <p style="margin-bottom: 15px"><th>Com acesso a rede e visualização das câmeras por celular</th></p>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <p style="margin-top: 5px; font-size: 13px;">A partir de</p>
-                                                <p style="margin-bottom: 15px"><strong>R$ <th>150.00</th></strong></p>
-                                            </div>
-                                        </div>
-                                    </div>
-	                    		</th>
-			        		</th>
-			        		<th>
-				        		<th>
-                                    <div class="inline-popup">
-                                        <div class="result-text clearfix">
-                                            <div class="col-md-10" style="text-align: left;">
-                                                <h4 style="margin-top: 5px"><th>Remanejo ou substituição de câmeras de segurança</th></h4>
-                                                <p style="margin-bottom: 15px"><th>Substituir ou alterar câmeras já instaladas</th></p>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <p style="margin-top: 5px; font-size: 13px;">A partir de</p>
-                                                <p style="margin-bottom: 15px"><strong>R$ <th>80.00</th></strong></p>
-                                            </div>
-                                        </div>
-                                    </div>
-	                    		</th>
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			            </div>
-			            </th>
-				        <th>
-			            <div class="" id="nav-filter-53HL">
-			                <div class="headline ">
-			                    <h3><th>Alarme</th></h3>
-			                </div>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-				        		<th>
-                                    <div class="inline-popup">
-                                        <div class="result-text clearfix">
-                                            <div class="col-md-10" style="text-align: left;">
-                                                <h4 style="margin-top: 5px"><th>Instalação de sensores de alarme</th></h4>
-                                                <p style="margin-bottom: 15px"><th>Preço por cada ponto adicionado com o passagem de cabo (caso necessário)</th></p>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <p style="margin-top: 5px; font-size: 13px;">A partir de</p>
-                                                <p style="margin-bottom: 15px"><strong>R$ <th>90.00</th></strong></p>
-                                            </div>
-                                        </div>
-                                    </div>
-	                    		</th>
-			        		</th>
-			        		<th>
-				        		<th>
-                                    <div class="inline-popup">
-                                        <div class="result-text clearfix">
-                                            <div class="col-md-10" style="text-align: left;">
-                                                <h4 style="margin-top: 5px"><th>Instalação e configuração central de alarme</th></h4>
-                                                <p style="margin-bottom: 15px"><th>Instalação e configuração de central de alarme</th></p>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <p style="margin-top: 5px; font-size: 13px;">A partir de</p>
-                                                <p style="margin-bottom: 15px"><strong>R$ <th>150.00</th></strong></p>
-                                            </div>
-                                        </div>
-                                    </div>
-	                    		</th>
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			            </div>
-			            </th>
-				        <th>
-			            <div class="" id="nav-filter-53HL">
-			                <div class="headline ">
-			                    <h3><th>Controle de Acesso</th></h3>
-			                </div>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-
-			        		</th>
-			        		<th>
-				        		<th>
-                                    <div class="inline-popup">
-                                        <div class="result-text clearfix">
-                                            <div class="col-md-10" style="text-align: left;">
-                                                <h4 style="margin-top: 5px"><th>Instalação interfone vídeo-porteiro</th></h4>
-                                                <p style="margin-bottom: 15px"><th>Instalação de um ponto de interfone vídeo-porteiro; Valor pode variar dependendo da infraestrutura do lugar</th></p>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <p style="margin-top: 5px; font-size: 13px;">A partir de</p>
-                                                <p style="margin-bottom: 15px"><strong>R$ <th>250.00</th></strong></p>
-                                            </div>
-                                        </div>
-                                    </div>
-	                    		</th>
-			        		</th>
-			        		<th>
-				        		<th>
-                                    <div class="inline-popup">
-                                        <div class="result-text clearfix">
-                                            <div class="col-md-10" style="text-align: left;">
-                                                <h4 style="margin-top: 5px"><th>Instalação interfone porteiro eletrônico</th></h4>
-                                                <p style="margin-bottom: 15px"><th>Instalação de um ponto de interfone porteiro eletrônico; Valor não inclui o porteiro eletrônico e pode variar dependendo da infraestrutura do lugar</th></p>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <p style="margin-top: 5px; font-size: 13px;">A partir de</p>
-                                                <p style="margin-bottom: 15px"><strong>R$ <th>120.00</th></strong></p>
-                                            </div>
-                                        </div>
-                                    </div>
-	                    		</th>
-			        		</th>
-			        		<th>
-				        		<th>
-                                    <div class="inline-popup">
-                                        <div class="result-text clearfix">
-                                            <div class="col-md-10" style="text-align: left;">
-                                                <h4 style="margin-top: 5px"><th>Fechadura elétrica</th></h4>
-                                                <p style="margin-bottom: 15px"><th>Instalação de uma fechadura eletrônica; Valor não inclui a peça e pode variar dependendo da infraestrutura do lugar</th></p>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <p style="margin-top: 5px; font-size: 13px;">A partir de</p>
-                                                <p style="margin-bottom: 15px"><strong>R$ <th>150.00</th></strong></p>
-                                            </div>
-                                        </div>
-                                    </div>
-	                    		</th>
-			        		</th>
-			            </div>
-			            </th>
+                              </div>
+                          </div>
+                        {% endfor %}
+                      </div>
 			            </div>
 			            <!-- /.results-section -->
-			        </div>
-			        <div class="prestador-home-content" style="display: none;" id="ratingContent">
-			        	<ul class="user-comment-list">
-
-							<div class="col-md-12">
-								<h5>Não há avaliação realizada</h5>
-							</div>
-						</ul>
-                        <div class="submit" align="left">
-				        	<a class="btn btn-youseg" style="max-width: 300px;" href="/realizarAvaliacao?idPrestador=1">Avaliar</a>
-                        </div>
-		                <div class="col-md-12">
-		                </div>
 			        </div>
 			    </div>
 			</div>
