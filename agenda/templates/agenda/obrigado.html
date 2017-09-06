@@ -1,74 +1,41 @@
-
 {% load static %}
+
 <!DOCTYPE HTML>
 
 <html>
 
 <head>
-    <title>Teora</title>
+    <title>youSeg | Serviços para a segurança do seu lar</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="Serviços rápidos para facilitar seu dia!" />
 
-    <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet" media="screen" />
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen" />
 
-    <link rel="stylesheet" media="screen" href="{% static '/css/gsdk.css' %}" />
+    <link rel="stylesheet" media="screen" href="{% static 'css/gsdk.css' %}"/>
 
-    <link rel="stylesheet" media="screen" href="{% static '/css/demo.css' %}" />
+    <link rel="stylesheet" media="screen" href="{% static 'css/demo.css' %}"/>
 
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Grand+Hotel|Open+Sans:400,300" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" media="screen" href="{% static '/css/pe-icon-7-stroke.css' %}" />
+    <link rel="stylesheet" media="screen" href="{% static 'css/pe-icon-7-stroke.css' %}"/>
 
-    <script src="{% static '/js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
 
-	<script src="{% static '/js/bootstrap.js' %}"></script>
+  	<script src="{% static 'js/bootstrap.js' %}"></script>
 
-  <link rel="stylesheet" media="screen" href="{% static 'css/examples.css' %}" />
+    <link rel="stylesheet" media="screen" href="{% static 'css/examples.css' %}"/>
 
-  <link rel="stylesheet" media="screen" href="{% static 'css/menu.css' %}" />
+    <link rel="stylesheet" media="screen" href="{% static 'css/menu.css' %}"/>
 
-  <link rel="stylesheet" media="screen" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" media="screen" href="{% static 'css/main.css' %}"/>
 
 </head>
 <body>
-<style>
 
-
-.test:not (.nohover ):hover {
-  border: 1px solid red;
-}
-
-.btnPrestador {
-  background: #EDA901;
-    display: block;
-    border-radius: 8px;
-    line-height: 47px;
-    text-align: center;
-    font-size: 18px;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.notUnderline {
-  text-decoration: none !important;
-}
-
-.prestadorTitle {
-  color: blue !important;
-  font-size: 16px !important;
-  padding-top: 0 !important;
-}
-
-.class:hover {
-    background-color: #edb831 !important;
-}
-
-</style>
 <nav class="navbar navbar-ct-silver navbar-fixed-top" role="navigation" style="position:relative; margin-bottom: 0px;">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -97,8 +64,7 @@
                         <li><a href="/termos/">Termos e condições de uso</a></li>
                     </ul>
                 </li>
-                <li><a href="{% url 'atividade:list' %}">Atividades</a></li>
-                <li><a href="{% url 'agenda:form' %}">Contato</a></li>
+                <li><a href="/contato/">Contato</a></li>
             </ul>
 
         </div>
@@ -108,14 +74,20 @@
 
 </nav>
 
-
 <div class="wrapper">
-  {% block body %}
-  {% endblock %}
-
+    <div class="section section_aboutus">
+        <div class="container">
+            <h2 class="section-title">Obrigado pelo seu contato!</h2>
+            <div class="row">
+                <div class="col-md-12">{{agendamento.nome}}, obrigado pelo seu interesse! Em breve entraremos em contato.
+                </div>
+            </div>
+        </div>
+    </div><!-- section -->
+    <div class="space-50"></div>
     <div class="section section-gray" id="footers">
 
-        <footer class="footer footer-big footer-transparent" style="background-image: url('{% static '/img/footer01.jpg' %}')">
+        <footer class="footer footer-big footer-transparent" style="background-image: url('../assets/img/footer01.jpg')">
 
             <!-- .footer-black is another class for the footer, for the transparent version, we recommend you to change the url of the image with your favourite image.          -->
 
@@ -258,7 +230,6 @@
             </div>
         </footer>
     </div>
-
 </div>
 <!-- end wrapper -->
 
@@ -267,26 +238,26 @@
 </body>
 
 <!--  jQuery and Bootstrap core files    -->
-<script type="text/javascript" src="{% static '/js/jquery-ui.custom.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery-ui.custom.min.js' %}"></script>
 
 <!--  Plugins -->
-<script src="{% static '/js/gsdk-checkbox.js' %}"></script>
-<script src="{% static '/js/gsdk-morphing.js' %}"></script>
-<script src="{% static '/js/gsdk-radio.js' %}"></script>
-<script src="{% static '/js/gsdk-bootstrapswitch.js' %}"></script>
-<script src="{% static '/js/bootstrap-select.js' %}"></script>
-<script src="{% static '/js/bootstrap-datepicker.js' %}"></script>
-<script src="{% static '/js/chartist.min.js' %}"></script>
-<script src="{% static '/js/jquery.tagsinput.js' %}"></script>
-<script src="{% static '/js/login-register.js' %}"></script>
-<script src="{% static '/js/jquery.mask.min.js' %}"></script>
-<script src="{% static '/js/search.js' %}"></script>
+<script src="{% static 'js/gsdk-checkbox.js' %}"></script>
+<script src="{% static 'js/gsdk-morphing.js' %}"></script>
+<script src="{% static 'js/gsdk-radio.js' %}"></script>
+<script src="{% static 'js/gsdk-bootstrapswitch.js' %}"></script>
+<script src="{% static 'js/bootstrap-select.js' %}"></script>
+<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'js/chartist.min.js' %}"></script>
+<script src="{% static 'js/jquery.tagsinput.js' %}"></script>
+<script src="{% static 'js/login-register.js' %}"></script>
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+<script src="{% static 'js/search.js' %}"></script>
 
 <!--  Get Shit Done Kit PRO Core javascript 	 -->
-<script src="{% static '/js/main.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 
 <!--  Get Shit Done Kit PRO methods used for demo purpose      -->
-<script src="{% static '/js/custom.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -298,17 +269,36 @@
   ga('send', 'pageview');
 
 </script>
+<script type="text/javascript">
+	function initMap() {
+      var myLatlng = new google.maps.LatLng(-21.184106, -47.798222);
+      var mapOptions = {
+          zoom: 15,
+          center: myLatlng,
+          scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
+      };
 
-	<script type="text/javascript">
-		function selectedAtividade() {
-			var selectBox = document.getElementById("selectAtividade");
-			var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-			if (selectedValue != 0) {
-				document.location.href = "/atividade/ver/" + selectedValue + "/";
-			}
-		}
-	</script>
+      var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-  {% block js %}
-  {% endblock %}
+      var marker = new google.maps.Marker({
+          position: myLatlng,
+          title: "youSeg"
+      });
+
+      marker.setMap(map);
+	}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
+<script type="text/javascript">
+	var maskTelefone = function (val) {
+		  return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+		},
+		maskOptions = {
+		  onKeyPress: function(val, e, field, options) {
+		      field.mask(maskTelefone.apply({}, arguments), options);
+		    }
+		};
+	$('#telefone').mask(maskTelefone, maskOptions);
+</script>
+
 </html>

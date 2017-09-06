@@ -1,0 +1,72 @@
+{% extends 'home/base.html' %}
+
+{% block body %}
+    <div class="section section_aboutus">
+    	<div id="map" style="height: 400px;width: 100%;"></div>
+        <div class="container">
+            <h2 class="section-title">Mande sua mensagem</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>
+                        Contate-nos. Assim que possível, entraremos retornaremos.<br /><br />
+                    </p>
+                    	<div id="divForm">
+                        <form action="{% url 'agenda:submit' %}" method="post" role="form">
+                          {% csrf_token %}
+                            <div class="form-group">
+                              {% for field in form %}
+                                <label for="{{field.id_for_label}}" class="control-label" style="margin-top: 8px;">{{field.label_tag}}</label>
+                                {{field}}
+                              {% endfor %}
+                            </div>
+                            <div class="submit" style="text-align: center;">
+                                <input type="submit" id="submitButton" name="submitButton" class="btn btn-youseg" value="Envie sua mensagem" />
+                                <img id="imgLoading" style="display:none" height="60px" src="../assets/img/loading.gif" />
+                            </div>
+                        </form>
+                        </div>
+                        <p id="msgEnviada" style="display: none">Mensagem enviada com sucesso! Aguarde que entraremos em contato!<br /><br /></p>
+                        <p id="msgErro" style="display: none">Erro ao enviar a mensagem! Tente novamente!<br /><br /></p>
+                </div>
+                <div class="col-md-4 col-md-offset-2">
+                    <div class="contact-info">
+                        <h5><i class="fa fa-map-marker text-muted"></i> Endereço</h5>
+                        <p class="text-muted"> Rua Iara, 129, Jardim Macedo<br />
+                            CEP: 14091-080<br />
+                            Ribeirão Preto - SP
+                        </p><br />
+                        <h5><i class="fa fa-phone text-muted"></i> Suporte</h5>
+                        <p class="text-muted"> youSeg<br />
+                            (16) 3101-4949<br />
+                            Segunda à sexta-feira<br />
+                            8:00h - 18:00h
+                        </p><br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- section -->
+    <div class="space-50"></div>
+    {% endblock %}
+{% block js %}
+<script type="text/javascript">
+	function initMap() {
+      var myLatlng = new google.maps.LatLng(-21.184106, -47.798222);
+      var mapOptions = {
+          zoom: 15,
+          center: myLatlng,
+          scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
+      };
+
+      var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+      var marker = new google.maps.Marker({
+          position: myLatlng,
+          title: "youSeg"
+      });
+
+      marker.setMap(map);
+	}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
+{% endblock %}

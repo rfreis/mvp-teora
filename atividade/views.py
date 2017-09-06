@@ -3,6 +3,8 @@ from django.shortcuts import (
     render
     )
 
+from django.db.models import Q
+
 from .models import (
     Atividade,
     AtividadeInfo
@@ -10,8 +12,14 @@ from .models import (
 
 def list(request):
     atividade = atividade = Atividade.objects.all().order_by('nome')
+    search = request.GET.get('search')
+    if search is not None:
+        atividade = atividade.filter(Q(nome__contains=search))
+    count = atividade.count()
     context = {
         'atividade': atividade,
+        'count': count,
+        'search': search,
     }
     return render(request, 'atividade/list.html', context)
 

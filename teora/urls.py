@@ -30,4 +30,5 @@ urlpatterns = [
     #teora urls
     url(r'^', include('home.urls')),
     url(r'^atividade/', include('atividade.urls')),
+    url(r'^agenda/', include('agenda.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

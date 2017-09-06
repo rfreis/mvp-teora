@@ -1,0 +1,93 @@
+{% extends 'home/base-home.html' %}
+
+{% block body %}
+<div class="parallax">
+    <div class="parallax-image">
+    </div>
+
+    <div class="motto">
+        <h3 class="tituloCep">
+    Encontre especialistas em informática, segurança eletrônica, telefonia e elétrica.
+        </h3>
+        <h3 class="tituloCep" style="font-size: 20px; margin-top:0px;">
+    Para as horas que você mais precisar.
+        </h3>
+        <div class="boxCep">
+            <div class="row">
+                <div class="col-md-12">
+                        <div class="form-group">
+            <p><strong>Selecione a atividade que deseja praticar:</strong></p>
+            <select class="form-control" id="selectAtividade" onchange="selectedAtividade();" style="font-size: 16px;">
+              <option value="0">Selecione a atividade...</option>
+              {% for atv in atividade %}
+              <option value="{{atv.slug}}">{{atv.nome}}</option>
+              {% endfor %}
+            </select>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div id="flow"></div>
+    </div>
+    <div class="arrow-down">
+        <div>
+            <a href="#flow">
+                <i class="arrow pe-7s-angle-down"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="container">
+        <div class="clients-presentation">
+          <hr />
+          <h3 align="center">Para as horas que você mais precisar. Veja como funciona.</h3>
+          <hr />
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="info">
+                        <div class="icon icon-azure">
+                            <i class="pe-7s-map-marker"></i>
+                        </div>
+                        <div class="description">
+                            <h4>Escolha a cidade onde você deseja ser atendido</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info">
+                        <div class="icon icon-azure">
+                            <i class="pe-7s-search"></i>
+                        </div>
+                        <div class="description">
+                            <h4>Busque pelo serviço que está precisando</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info">
+                        <div class="icon icon-azure">
+                            <i class="pe-7s-medal"></i>
+                        </div>
+                        <div class="description">
+                            <h4>Encontre profissionais disponíveis</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info">
+                        <div class="icon icon-azure">
+                            <i class="pe-7s-like2"></i>
+                        </div>
+                        <div class="description">
+                            <h4>Avalie o serviço prestado e ajude-nos a melhorar</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end section meet our clients -->
+{% endblock %}

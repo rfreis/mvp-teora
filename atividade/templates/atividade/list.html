@@ -1,113 +1,6 @@
+{% extends 'home/base.html' %}
 
-{% load static %}
-<!DOCTYPE HTML>
-
-<html>
-
-<head>
-    <title>youSeg | Serviços para a segurança do seu lar</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-    <meta name="viewport" content="width=device-width" />
-
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen" />
-
-    <link rel="stylesheet" media="screen" href="{% static '/css/gsdk.css' %}" />
-
-    <link rel="stylesheet" media="screen" href="{% static '/css/demo.css' %}" />
-
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Grand+Hotel|Open+Sans:400,300" rel="stylesheet" type="text/css" />
-
-    <link rel="stylesheet" media="screen" href="{% static '/css/pe-icon-7-stroke.css' %}" />
-
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-
-	<script src="{% static 'js/bootstrap.js' %}"></script>
-
-    <link rel="stylesheet" media="screen" href="{% static '/css/examples.css' %}" />
-
-    <link rel="stylesheet" media="screen" href="{% static '/css/menu.css' %}" />
-
-</head>
-
-<style>
-
-
-.test:not (.nohover ):hover {
-	border: 1px solid red;
-}
-
-.btnPrestador {
-	background: #EDA901;
-    display: block;
-    border-radius: 8px;
-    line-height: 47px;
-    text-align: center;
-    font-size: 18px;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.notUnderline {
-	text-decoration: none !important;
-}
-
-.prestadorTitle {
-	color: blue !important;
-	font-size: 16px !important;
-	padding-top: 0 !important;
-}
-
-.class:hover {
-    background-color: #edb831 !important;
-}
-
-</style>
-<body class="LIST scrollable">
-
-<nav class="navbar navbar-ct-silver navbar-fixed-top" role="navigation" style="position:relative; margin-bottom: 0px;">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button id="menu-toggle" type="button" class="navbar-toggle">
-                <span class="sr-only">Navegação</span>
-                <span class="icon-bar bar1"></span>
-                <span class="icon-bar bar2"></span>
-                <span class="icon-bar bar3"></span>
-            </button>
-            <a class="navbar-brand" href="/">
-                <img src="{% static 'img/logoSite_youSeg.png' %}" alt="" width="156px" style="margin-top: -13px;" />
-            </a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse">
-
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Sobre a youSeg
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/termos/">Termos e condições de uso</a></li>
-                    </ul>
-                </li>
-                <li><a href="/contato/">Contato</a></li>
-            </ul>
-
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-
-</nav>
-
-<div class="wrapper">
+{% block body %}
 
 		<div class="section section_aboutus">
 
@@ -118,10 +11,12 @@
 								<li class="col-md-12" style="text-align: left !important"><label for="divBuscas" style="color:white; margin-left: 0;">Busca:</label>
 									<div id="divBuscas" class="searchBarFilter" style="margin-top: -10px;">
 										<div class="search-bar">
+											<form method="get" action="{% url 'atividade:list' %}">
 											<div class="field-wrap">
-												<input type="text" name="searchFilterField" id="searchFilterField" class="field" placeholder="Buscar pela atividade que você quer conhecer..." />
+												<input type="text" name="search" id="searchFilterField" class="field" placeholder="Buscar pela atividade que você quer conhecer..." />
 											</div>
-											<input id="filtroSearch" class="btn-search" />
+											<input type="submit" class="btn-search" />
+											</form>
 										</div>
 									</div>
 								</li>
@@ -135,13 +30,16 @@
                 <h3 style="margin-left: 15px;margin-top: 15px;">Atividades em Ribeirão Preto</h3>
                 <hr />
                 <div id="divPrestadores">
+									{% if count == 0 %}
+									<p>Não foram encontradas atividades com as palavras: {{search}}.</p>
+									{% endif %}
                 {% for atv in atividade %}
         				<div class="col-md-4">
         				    <div class="card" style="padding-bottom: 1%;">
         				        <div class="image_services">
         				            <img src="{{atv.get_foto_url}}" />
         				            <div class="filter">
-        				            	<a class="btn btn-neutral btn-simple" href="{% url 'atividade:detail' atv.slug %}"><i class="fa fa-bookmark-o"></i> Inscreva-se!</a>
+        				            	<a class="btn btn-neutral btn-simple" href="{% url 'atividade:detail' atv.slug %}"><i class="fa fa-bookmark-o"></i> Ver Detalhes</a>
         				            </div>
         				        </div>
         				        <div class="content" style="position: relative; min-height: 110px; text-align:center;">
@@ -151,7 +49,7 @@
           				            <div class="footer col-md-12" style="margin-top: 5px; bottom: 10px; margin-right: 15px;">
           				                <div style="margin-top: 5px; width: 100%;">
           				                	<a class="btn btn-simple" style="border: 1px solid;border-color: #EDA901;width: 100%;height: 50px;border-radios: 10px;background-color: #EDA901;color: #FFFFFF;line-height: 30px;" href="{% url 'atividade:detail' atv.slug %}">
-          				                    	<i class="fa fa-bookmark-o"></i> Inscreva-se!</a>
+          				                    	<i class="fa fa-bookmark-o"></i> Ver Detalhes</a>
           				                </div>
           				            </div>
         				        </div>
@@ -163,306 +61,4 @@
 		</div>
 		</div>
 		</div>
-		<div class="section section-gray" id="footers">
-
-        <footer class="footer footer-big footer-transparent" style="background-image: url('{% static 'img/footer01.jpg' %}')">
-
-            <!-- .footer-black is another class for the footer, for the transparent version, we recommend you to change the url of the image with your favourite image.          -->
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-md-offset-1">
-                        <h5 class="title">youSeg</h5>
-                        <nav>
-                            <ul>
-		                        <li><a href="/termos/">Termos e condições de uso</a></li>
-				                <li><a href="/contato/">Contato</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="col-md-3 col-md-offset-1">
-                        <h5 class="title">Categorias de serviços</h5>
-                        <nav>
-                            <ul>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Informática</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>CFTV</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Alarme</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Controle de Acesso</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Elétrica</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Hidráulica</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Alvenaria</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Serralheria</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Ferragem</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Ar condicionado</th></span></li>
-                            	</th>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="col-md-3 col-md-offset-1">
-                        <h5 class="title">Área de cobertura</h5>
-                        <nav class="numbers">
-                        	<ul>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=ribeirao-preto"><th>Ribeirão Preto</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=serrana"><th>Serrana</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=sertaozinho"><th>Sertãozinho</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=franca"><th>Franca</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=serra-azul"><th>Serra Azul</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=viradouro"><th>Viradouro</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=pitangueiras"><th>Pitangueiras</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=pontal"><th>Pontal</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=luiz-antonio"><th>Luis Antônio</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=jardinopolis"><th>Jardinópolis</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=cravinhos"><th>Cravinhos</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=sao-simao"><th>São Simão</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=santa-rosa-de-viterbo"><th>Santa Rosa de Viterbo</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=pocos-de-caldas"><th>Poços de Caldas</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=juruce"><th>Jurucê</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=brodowski"><th>Brodowski</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=santa-barbara-doeste"><th>Santa Bárbara D&#39;Oeste</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=americana"><th>Americana</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=campinas"><th>Campinas</th></a></li>
-                                </th>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <hr />
-                <div class="social-area text-center">
-                    <h5>Siga-nos nos links abaixo </h5>
-                    <a href="https://www.facebook.com/voceseg/" target="_blank" class="btn btn-social btn-round">
-                        <i class="fa fa-facebook"></i>
-                    </a>
-                    <a href="https://www.instagram.com/voceseguro/" target="_blank" class="btn btn-social btn-round">
-                        <i class="fa fa-instagram"></i>
-                    </a>
-                    <a href="https://plus.google.com/u/0/107761337422012203268/about" target="_blank" class="btn btn-social btn-round">
-                        <i class="fa fa-google-plus"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/company/10323729" target="_blank" class="btn btn-social btn-round">
-                        <i class="fa fa-linkedin"></i>
-                    </a>
-                    <a href="https://www.youtube.com/channel/UCmqn6C-8WyHuBuW82fH9kew" target="_blank" class="btn btn-social btn-round">
-                        <i class="fa fa-youtube"></i>
-                    </a>
-                </div>
-
-                <div class="copyright">
-                    © Copyright 2016 - Todos os direitos reservados para youSeg
-                </div>
-            </div>
-        </footer>
-    </div>
-
-</div>
-<!-- end wrapper -->
-
-<!-- </div> -->
-
-</body>
-
-<!--  jQuery and Bootstrap core files    -->
-<script type="text/javascript" src="{% static '/js/jquery-ui.custom.min.js' %}"></script>
-
-<!--  Plugins -->
-<script src="{% static '/js/gsdk-checkbox.js' %}"></script>
-<script src="{% static '/js/gsdk-morphing.js' %}"></script>
-<script src="{% static '/js/gsdk-radio.js' %}"></script>
-<script src="{% static '/js/gsdk-bootstrapswitch.js' %}"></script>
-<script src="{% static '/js/bootstrap-select.js' %}"></script>
-<script src="{% static '/js/bootstrap-datepicker.js' %}"></script>
-<script src="{% static '/js/chartist.min.js' %}"></script>
-<script src="{% static '/js/jquery.tagsinput.js' %}"></script>
-<script src="{% static '/js/login-register.js' %}"></script>
-<script src="{% static '/js/jquery.mask.min.js' %}"></script>
-<script src="{% static '/js/search.js' %}"></script>
-
-<!--  Get Shit Done Kit PRO Core javascript 	 -->
-<script src="{% static '/js/main.js' %}"></script>
-
-<!--  Get Shit Done Kit PRO methods used for demo purpose      -->
-<script src="{% static '/js/custom.js' %}"></script>
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-80192282-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-	<script>
-	/*<![CDATA[*/
-	    var prestadores = [{'avaliacoesDTO':[],'bairro':'Jardim Santa L\xFAcia','cidadeDTO':{'estadoDTO':{'id':'1','nome':'SP'},'id':'3','nome':'Sert\xE3ozinho','url':'sertaozinho'},'descricao':'Tudo para seguran\xE7a residencial e comercial','disponibilidade':'30 min','email':'thiago.willyans@gmail.com','endereco':'Rua Anacleto Soldera, 234','foto':'img/prestadores/wseg.png','horarioAtendimento':'08:00h \xE0s 18:30h','id':'8','likes':'0','nome':'WSEG Seguran\xE7a Eletr\xF4nica','nomeResponsavel':'Thiago Willyans','online':'1','ordem':'1','senha':null,'servicosDTO':[],'telefone':'16 9 9232 1110','url':'wseg'},{'avaliacoesDTO':[],'bairro':'Centro','cidadeDTO':{'estadoDTO':{'id':'1','nome':'SP'},'id':'1','nome':'Ribeir\xE3o Preto','url':'ribeirao-preto'},'descricao':'A Lopes Inform\xE1tica \xE9 uma empresa a mais de 10 anos no mercado, localizada na cidade de Ribeir\xE3o Preto-SP. \xC9 uma empresa no ramo de inform\xE1tica e tecnologia que tem como objetivo prestar assist\xEAncia t\xE9cnica especializada, oferecendo aos nossos clientes, rapidez, confian\xE7a e acima de tudo honestidade. Dispomos de ampla experi\xEAncia e conhecimento na solu\xE7\xE3o de problemas do setor.','disponibilidade':'30 min','email':'vendas@lopesinfo.com.br','endereco':'Rua Marechal Deodoro, 138','foto':'img/prestadores/lopes_informatica.png','horarioAtendimento':'08:00h \xE0s 18:00h','id':'1','likes':'0','nome':'Lopes inform\xE1tica','nomeResponsavel':'Daudt Costa Junior','online':'1','ordem':'1','senha':null,'servicosDTO':[{'categoriaDTO':{'descricao':null,'id':'1','nome':'Inform\xE1tica'},'descricao':'Salvamento de dados e instala\xE7\xE3o de sistema operacional; Adicional: busca e entrega do micro computador por R$30,00 (n\xE3o incluso no pre\xE7o final)','foto':null,'id':'1','nome':'Formata\xE7\xE3o em microcomputador','preco':'90.00'},{'categoriaDTO':{'descricao':null,'id':'1','nome':'Inform\xE1tica'},'descricao':'Salvamento de dados, instala\xE7\xE3o de sistema operacional e limpeza de cooler. Adicional: busca e entrega do micro computador por R$30,00 (n\xE3o incluso no pre\xE7o final)','foto':null,'id':'2','nome':'Formata\xE7\xE3o em notebook','preco':'120.00'},{'categoriaDTO':{'descricao':null,'id':'1','nome':'Inform\xE1tica'},'descricao':'Visita para verifica\xE7\xE3o e corre\xE7\xE3o de problemas diversos referentes a inform\xE1tica (internet n\xE3o funcional, instala\xE7\xE3o de roteador, configura\xE7\xE3o de impressora, entre outros)','foto':null,'id':'3','nome':'Chamado t\xE9cnico','preco':'90.00'},{'categoriaDTO':{'descricao':null,'id':'2','nome':'CFTV'},'descricao':'Ponto novo com passagem de cabeamento','foto':null,'id':'4','nome':'Instala\xE7\xE3o de c\xE2meras de seguran\xE7a','preco':'150.00'},{'categoriaDTO':{'descricao':null,'id':'2','nome':'CFTV'},'descricao':'Com acesso a rede e visualiza\xE7\xE3o das c\xE2meras por celular','foto':null,'id':'5','nome':'Instala\xE7\xE3o e configura\xE7\xE3o DVR','preco':'150.00'},{'categoriaDTO':{'descricao':null,'id':'2','nome':'CFTV'},'descricao':'Substituir ou alterar c\xE2meras j\xE1 instaladas','foto':null,'id':'6','nome':'Remanejo ou substitui\xE7\xE3o de c\xE2meras de seguran\xE7a','preco':'80.00'},{'categoriaDTO':{'descricao':null,'id':'3','nome':'Alarme'},'descricao':'Pre\xE7o por cada ponto adicionado com o passagem de cabo (caso necess\xE1rio)','foto':null,'id':'7','nome':'Instala\xE7\xE3o de sensores de alarme','preco':'90.00'},{'categoriaDTO':{'descricao':null,'id':'3','nome':'Alarme'},'descricao':'Instala\xE7\xE3o e configura\xE7\xE3o de central de alarme','foto':null,'id':'8','nome':'Instala\xE7\xE3o e configura\xE7\xE3o central de alarme','preco':'150.00'},{'categoriaDTO':{'descricao':null,'id':'4','nome':'Controle de Acesso'},'descricao':'Instala\xE7\xE3o de um ponto de interfone v\xEDdeo-porteiro; Valor pode variar dependendo da infraestrutura do lugar','foto':null,'id':'9','nome':'Instala\xE7\xE3o interfone v\xEDdeo-porteiro','preco':'250.00'},{'categoriaDTO':{'descricao':null,'id':'4','nome':'Controle de Acesso'},'descricao':'Instala\xE7\xE3o de um ponto de interfone porteiro eletr\xF4nico; Valor n\xE3o inclui o porteiro eletr\xF4nico e pode variar dependendo da infraestrutura do lugar','foto':null,'id':'10','nome':'Instala\xE7\xE3o interfone porteiro eletr\xF4nico','preco':'120.00'},{'categoriaDTO':{'descricao':null,'id':'4','nome':'Controle de Acesso'},'descricao':'Instala\xE7\xE3o de uma fechadura eletr\xF4nica; Valor n\xE3o inclui a pe\xE7a e pode variar dependendo da infraestrutura do lugar','foto':null,'id':'11','nome':'Fechadura el\xE9trica','preco':'150.00'}],'telefone':'(16) 3610-7125 / (16) 99133-6986','url':'lopesinformatica'},{'avaliacoesDTO':[],'bairro':'Jardim das Rosas','cidadeDTO':{'estadoDTO':{'id':'1','nome':'SP'},'id':'2','nome':'Serrana','url':'serrana'},'descricao':'H\xE1 mais de 10 anos prestando servi\xE7os em el\xE9trica e seguran\xE7a eletr\xF4nica.','disponibilidade':'20 min','email':'mizaelrodrigues83@hotmail.com\r\n','endereco':'Rua Benedito Carlos do Santos, 243 B','foto':'img/prestadores/default_eletrica.png','horarioAtendimento':'08:00h \xE0s 18:00h','id':'10','likes':'0','nome':'MR El\xE9trica','nomeResponsavel':'Mizael Rodrigues','online':'1','ordem':'1','senha':null,'servicosDTO':[{'categoriaDTO':{'descricao':null,'id':'2','nome':'CFTV'},'descricao':'Instala\xE7\xE3o de 1 ponto interfone monofone','foto':null,'id':'81','nome':'Instala\xE7\xE3o interfone monofone','preco':'80.00'},{'categoriaDTO':{'descricao':null,'id':'2','nome':'CFTV'},'descricao':'Extens\xE3o de 1 ponto de interfone monofone (extens\xE3o entre 20m a 30m)','foto':null,'id':'82','nome':'Extens\xE3o de ponto de interfone monofone','preco':'40.00'},{'categoriaDTO':{'descricao':null,'id':'2','nome':'CFTV'},'descricao':'Instala\xE7\xE3o 1 ponto de interfone v\xEDdeo-porteiro','foto':null,'id':'83','nome':'Instala\xE7\xE3o interfone v\xEDdeo-porteiro','preco':'120.00'},{'categoriaDTO':{'descricao':null,'id':'2','nome':'CFTV'},'descricao':'Instala\xE7\xE3o de 1 ponto de c\xE2mera seguran\xE7a','foto':null,'id':'84','nome':'Instala\xE7\xE3o c\xE2mera seguran\xE7a','preco':'80.00'},{'categoriaDTO':{'descricao':null,'id':'2','nome':'CFTV'},'descricao':'Instala\xE7\xE3o e configura\xE7\xE3o de DVR','foto':null,'id':'85','nome':'Instala\xE7\xE3o e configura\xE7\xE3o DVR','preco':'80.00'},{'categoriaDTO':{'descricao':null,'id':'2','nome':'CFTV'},'descricao':'Remanejo/substitui\xE7\xE3o de posi\xE7\xE3o de c\xE2meras de seguran\xE7a','foto':null,'id':'86','nome':'Remanejo/substitui\xE7\xE3o de c\xE2meras de seguran\xE7a','preco':'40.00'},{'categoriaDTO':{'descricao':null,'id':'2','nome':'CFTV'},'descricao':'Pre\xE7o por cada ponto adicionado com o passagem de cabo (caso necess\xE1rio)','foto':null,'id':'87','nome':'Instala\xE7\xE3o de sensor de alarme','preco':'30.00'},{'categoriaDTO':{'descricao':null,'id':'2','nome':'CFTV'},'descricao':'Instala\xE7\xE3o e configura\xE7\xE3o de uma central de alarme','foto':null,'id':'88','nome':'Instala\xE7\xE3o e configura\xE7\xE3o central de alarme','preco':'40.00'},{'categoriaDTO':{'descricao':null,'id':'5','nome':'El\xE9trica'},'descricao':'Instala\xE7\xE3o de 1 ponto de ventilador','foto':null,'id':'89','nome':'Instala\xE7\xE3o de ventilador','preco':'80.00'},{'categoriaDTO':{'descricao':null,'id':'5','nome':'El\xE9trica'},'descricao':'Visita t\xE9cnica','foto':null,'id':'90','nome':'Visita t\xE9cnica','preco':'60.00'},{'categoriaDTO':{'descricao':null,'id':'5','nome':'El\xE9trica'},'descricao':'Troca de 1 ponto de tomada','foto':null,'id':'91','nome':'Troca ponto de tomada','preco':'60.00'},{'categoriaDTO':{'descricao':null,'id':'5','nome':'El\xE9trica'},'descricao':'Trocar um ponto de l\xE2mpada/reator','foto':null,'id':'92','nome':'Trocar l\xE2mpada/reator','preco':'60.00'},{'categoriaDTO':{'descricao':null,'id':'5','nome':'El\xE9trica'},'descricao':'Trocar 1 ponto de luz bocal','foto':null,'id':'93','nome':'Trocar luz bocal','preco':'60.00'},{'categoriaDTO':{'descricao':null,'id':'5','nome':'El\xE9trica'},'descricao':'Instala\xE7\xE3o de trava el\xE9trica de port\xE3o','foto':null,'id':'94','nome':'Instala\xE7\xE3o de trava el\xE9trica de port\xE3o','preco':'60.00'},{'categoriaDTO':{'descricao':null,'id':'5','nome':'El\xE9trica'},'descricao':'Check-up el\xE9trico','foto':null,'id':'95','nome':'Check-up el\xE9trico','preco':'60.00'}],'telefone':'16 9 9386 0504','url':'mr-eletrica'},{'avaliacoesDTO':[],'bairro':'Jd Boa Esperan\xE7a','cidadeDTO':{'estadoDTO':{'id':'1','nome':'SP'},'id':'2','nome':'Serrana','url':'serrana'},'descricao':'Presta\xE7\xE3o de servi\xE7os el\xE9tricos e seguran\xE7a eletr\xF4nica e rede inform\xE1tica.','disponibilidade':'30 min','email':'systemtecsolu\xE7\xF5es@gmail.com','endereco':'Rua Amelio Barricala, 1469','foto':'img/prestadores/systemtec.png','horarioAtendimento':'07:00h \xE0s 19:00h','id':'4','likes':'0','nome':'System Tec - Solu\xE7\xF5es El\xE9tricas e Seguran\xE7a Eletr\xF4nica','nomeResponsavel':'Mois\xE9s Donizete Lourena','online':'1','ordem':'1','senha':null,'servicosDTO':[{'categoriaDTO':{'descricao':null,'id':'2','nome':'CFTV'},'descricao':'Ponto novo com passagem de cabeamento','foto':null,'id':'45','nome':'Instala\xE7\xE3o ponto de c\xE2mera','preco':'100.00'},{'categoriaDTO':{'descricao':null,'id':'11','nome':'Ar condicionado'},'descricao':'Instala\xE7\xE3o de um ar condicionado (7 a 12 mil BTUs)','foto':null,'id':'46','nome':'Instala\xE7\xE3o de ar condicionado','preco':'280.00'},{'categoriaDTO':{'descricao':null,'id':'11','nome':'Ar condicionado'},'descricao':'Limpeza de um ar condicionado','foto':null,'id':'47','nome':'Limpeza de ar condicionado','preco':'120.00'},{'categoriaDTO':{'descricao':null,'id':'5','nome':'El\xE9trica'},'descricao':'Instala\xE7\xE3o de um ponto de sensor;  Valor por ponto de sensor','foto':null,'id':'48','nome':'Instala\xE7\xE3o de alarme','preco':'100.00'}],'telefone':'16 9 9216 2590','url':'systemtec'},{'avaliacoesDTO':[],'bairro':'Campos El\xEDseos','cidadeDTO':{'estadoDTO':{'id':'1','nome':'SP'},'id':'1','nome':'Ribeir\xE3o Preto','url':'ribeirao-preto'},'descricao':'Especializada na \xE1rea de redes, a A.S.T.I. trabalha com projetos de cabeamento de rede e fibra \xF3tica, levantamento e execu\xE7\xE3o, tamb\xE9m na \xE1rea de CFTV, WiFi indoor e outdoor, e consultoria em tecnologia.','disponibilidade':'45 Min','email':'andre@asti.net.br','endereco':'Rua Marques de Pombal, 234','foto':'img/prestadores/asti.png','horarioAtendimento':'08:00h \xE0s 18:00h','id':'2','likes':'0','nome':'A.S.T.I. - Solu\xE7\xF5es em Tecnologia e Redes','nomeResponsavel':'Andr\xE9 Menezes Salom\xE3o','online':'1','ordem':'2','senha':null,'servicosDTO':[{'categoriaDTO':{'descricao':null,'id':'2','nome':'CFTV'},'descricao':'Ponto novo com passagem de cabeamento','foto':null,'id':'12','nome':'Instala\xE7\xE3o de ponto de c\xE2mera','preco':'150.00'},{'categoriaDTO':{'descricao':null,'id':'1','nome':'Inform\xE1tica'},'descricao':'Instala\xE7\xE3o de um ponto de rede','foto':null,'id':'13','nome':'Instala\xE7\xE3o de ponto de rede','preco':'90.00'},{'categoriaDTO':{'descricao':null,'id':'1','nome':'Inform\xE1tica'},'descricao':'Visita para verifica\xE7\xE3o e corre\xE7\xE3o de problemas diversos referentes a inform\xE1tica (internet n\xE3o funcional, instala\xE7\xE3o de roteador, configura\xE7\xE3o de impressora, entre outros)','foto':null,'id':'14','nome':'Hora t\xE9cnica','preco':'100.00'},{'categoriaDTO':{'descricao':null,'id':'1','nome':'Inform\xE1tica'},'descricao':'Projeto de rede b\xE1sico','foto':null,'id':'15','nome':'Projetos de rede b\xE1sico','preco':'300.00'},{'categoriaDTO':{'descricao':null,'id':'1','nome':'Inform\xE1tica'},'descricao':'Salvamento de dados e instala\xE7\xE3o de sistema operacional','foto':null,'id':'39','nome':'Formata\xE7\xE3o em microcomputador','preco':'150.00'},{'categoriaDTO':{'descricao':null,'id':'1','nome':'Inform\xE1tica'},'descricao':'Salvamento de dados , instala\xE7\xE3o de sistema operacional e limpeza de cooler','foto':null,'id':'40','nome':'Formata\xE7\xE3o em notebook','preco':'180.00'},{'categoriaDTO':{'descricao':null,'id':'1','nome':'Inform\xE1tica'},'descricao':'Fusao de fibra otica com teste de power meter','foto':null,'id':'41','nome':'Fus\xE3o de fibra otica com teste de power meter','preco':'90.00'},{'categoriaDTO':{'descricao':null,'id':'1','nome':'Inform\xE1tica'},'descricao':'Projeto e instala\xE7\xE3o de uma rede Wireless Indoor para residencias e/ou empresas','foto':null,'id':'42','nome':'Projeto Wireless Indoor para residencias e/ou empresas','preco':'200.00'},{'categoriaDTO':{'descricao':null,'id':'2','nome':'CFTV'},'descricao':'Substituir ou alterar c\xE2meras j\xE1 instaladas\r\n','foto':null,'id':'43','nome':'Manuten\xE7\xE3o de c\xE2meras de seguran\xE7a','preco':'80.00'},{'categoriaDTO':{'descricao':null,'id':'2','nome':'CFTV'},'descricao':'Visita para verifica\xE7\xE3o e corre\xE7\xE3o de problemas diversos referentes a CFTV','foto':null,'id':'44','nome':'Visita CFTV','preco':'100.00'}],'telefone':'16 99192 5122','url':'asti'},{'avaliacoesDTO':[],'bairro':'Vila Guiomar','cidadeDTO':{'estadoDTO':{'id':'1','nome':'SP'},'id':'1','nome':'Ribeir\xE3o Preto','url':'ribeirao-preto'},'descricao':'Presta\xE7\xE3o e manuten\xE7\xE3o de servi\xE7os el\xE9tricos e hidr\xE1ulicos','disponibilidade':'60 Min','email':'ajatoismael@hotmail.com','endereco':'Rua Eduardo Soares de Azevedo, 296, Casa A5','foto':'img/prestadores/ajato.png','horarioAtendimento':'08:00h \xE0s 18:00h','id':'3','likes':'0','nome':'Ajato - Presta\xE7\xE3o de Servi\xE7os','nomeResponsavel':'Ismael Batista da Silva','online':'1','ordem':'3','senha':null,'servicosDTO':[{'categoriaDTO':{'descricao':null,'id':'6','nome':'Hidr\xE1ulica'},'descricao':'Reparo de 1 v\xE1lvula de descarga','foto':null,'id':'16','nome':'Reparo de v\xE1lvula de descarga','preco':'60.00'},{'categoriaDTO':{'descricao':null,'id':'5','nome':'El\xE9trica'},'descricao':'Instala\xE7\xE3o de 1 ventilador de teto','foto':null,'id':'17','nome':'Instala\xE7\xE3o de ventilador de teto','preco':'100.00'},{'categoriaDTO':{'descricao':null,'id':'4','nome':'Controle de Acesso'},'descricao':'Instala\xE7\xE3o de 1 ponto interfone porteiro eletr\xF4nico','foto':null,'id':'18','nome':'Instala\xE7\xE3o de interfone porteiro eletr\xF4nico','preco':'100.00'},{'categoriaDTO':{'descricao':null,'id':'4','nome':'Controle de Acesso'},'descricao':'Instala\xE7\xE3o de 1 interfone v\xEDdeo-porteiro','foto':null,'id':'19','nome':'Instala\xE7\xE3o de interfone v\xEDdeo-porteiro','preco':'250.00'},{'categoriaDTO':{'descricao':null,'id':'4','nome':'Controle de Acesso'},'descricao':'Instala\xE7\xE3o de 1 fechadura eletr\xF4nica','foto':null,'id':'20','nome':'Instala\xE7\xE3o fechadura eletr\xF4nica','preco':'70.00'},{'categoriaDTO':{'descricao':null,'id':'5','nome':'El\xE9trica'},'descricao':'Instala\xE7\xE3o de 1 ponto de tomada','foto':null,'id':'21','nome':'Instala\xE7\xE3o ponto de tomada','preco':'30.00'},{'categoriaDTO':{'descricao':null,'id':'6','nome':'Hidr\xE1ulica'},'descricao':'Instala\xE7\xE3o 1 chuveiro','foto':null,'id':'22','nome':'Instala\xE7\xE3o de chuveiro','preco':'70.00'},{'categoriaDTO':{'descricao':null,'id':'5','nome':'El\xE9trica'},'descricao':'Instala\xE7\xE3o de 1 ponto de ilumina\xE7\xE3o externa com sensor','foto':null,'id':'23','nome':'Instala\xE7\xE3o de ilumina\xE7\xE3o externa com sensor','preco':'50.00'},{'categoriaDTO':{'descricao':null,'id':'5','nome':'El\xE9trica'},'descricao':'Troca de resist\xEAncia de 1 chuveiro','foto':null,'id':'24','nome':'Troca de resist\xEAncia de chuveiro','preco':'50.00'},{'categoriaDTO':{'descricao':null,'id':'6','nome':'Hidr\xE1ulica'},'descricao':'Troca de 1 v\xE1lvula de descarga','foto':null,'id':'25','nome':'Troca de v\xE1lvula de descarga','preco':'150.00'},{'categoriaDTO':{'descricao':null,'id':'6','nome':'Hidr\xE1ulica'},'descricao':'Troca de 1 caixa d\'\xE1gua','foto':null,'id':'26','nome':'Troca de caixa d\'\xE1gua','preco':'200.00'},{'categoriaDTO':{'descricao':null,'id':'6','nome':'Hidr\xE1ulica'},'descricao':'Desentupir vaso sanit\xE1rio ','foto':null,'id':'27','nome':'Desentupir vaso sanit\xE1rio ','preco':'60.00'},{'categoriaDTO':{'descricao':null,'id':'6','nome':'Hidr\xE1ulica'},'descricao':'Instala\xE7\xE3o de 1 ducha higi\xEAnica','foto':null,'id':'28','nome':'Instala\xE7\xE3o de ducha higi\xEAnica','preco':'50.00'},{'categoriaDTO':{'descricao':null,'id':'6','nome':'Hidr\xE1ulica'},'descricao':'Troca do registro de \xE1gua','foto':null,'id':'29','nome':'Trocar de registro d\'agua','preco':'50.00'},{'categoriaDTO':{'descricao':null,'id':'6','nome':'Hidr\xE1ulica'},'descricao':'Verifica\xE7\xE3o registro/rel\xF3gio de \xE1gua','foto':null,'id':'30','nome':'Verifica\xE7\xE3o de registro d\'agua','preco':'50.00'},{'categoriaDTO':{'descricao':null,'id':'6','nome':'Hidr\xE1ulica'},'descricao':'Verifica\xE7\xE3o e reparo de vazamentos','foto':null,'id':'31','nome':'Verifica\xE7\xE3o e reparo de vazamentos','preco':'50.00'},{'categoriaDTO':{'descricao':null,'id':'6','nome':'Hidr\xE1ulica'},'descricao':'Instala\xE7\xE3o de cavalete rel\xF3gio padr\xE3o','foto':null,'id':'32','nome':'Instala\xE7\xE3o de cavalete','preco':'300.00'},{'categoriaDTO':{'descricao':null,'id':'5','nome':'El\xE9trica'},'descricao':'Montar quadro interno de disjuntores','foto':null,'id':'34','nome':'Montar caixa de dejuntor','preco':'300.00'},{'categoriaDTO':{'descricao':null,'id':'7','nome':'Alvenaria'},'descricao':'Mudan\xE7a ou instala\xE7\xE3o de novas tomadas','foto':null,'id':'35','nome':'Deslocamento de tomada','preco':'70.00'},{'categoriaDTO':{'descricao':null,'id':'7','nome':'Alvenaria'},'descricao':'Embutir conduites nas paredes e chumbar caixa','foto':null,'id':'37','nome':'Recorte em paredes','preco':'70.00'},{'categoriaDTO':{'descricao':null,'id':'5','nome':'El\xE9trica'},'descricao':'Extens\xE3o/troca ou instala\xE7\xE3o de interfone monofone ','foto':null,'id':'38','nome':'Ponto de interfone monofone','preco':'50.00'}],'telefone':'16 9 9119 2283\r\n16 9 8870 5618','url':'ajato-prestacao-de-servico'},{'avaliacoesDTO':[],'bairro':'Ipiranga','cidadeDTO':{'estadoDTO':{'id':'1','nome':'SP'},'id':'1','nome':'Ribeir\xE3o Preto','url':'ribeirao-preto'},'descricao':'A Espa\xE7o TI \xE9 uma empresa situada na cidade de Ribeir\xE3o Preto especializada em Tecnologia da Informa\xE7\xE3o nos setores de telecomunica\xE7\xF5es, desenvolvimento de tecnologia (hardware e software), distribui\xE7\xE3o de tecnologia e integradores. Com um suporte corporativo para pequenas, m\xE9dias e grandes empresas, nosso conhecimento n\xE3o se restringe apenas a tecnologia, temos tamb\xE9m especializa\xE7\xE3o em gest\xE3o de projetos, neg\xF3cios, ampliando a qualidade de decis\xF5es para apoi\xE1-lo da melhor e mais r\xE1pida maneira poss\xEDvel a fim de garantir o pleno funcionamento e andamento dos processos gerenciais de sua empresa.','disponibilidade':'30 min','email':'contato@espacoti.com.br','endereco':'Gustavo Jorge, 247','foto':'img/prestadores/espacoti.png','horarioAtendimento':'08:00h \xE0s 18:00h','id':'7','likes':'0','nome':'Espa\xE7o TI - Solu\xE7\xF5es em Tecnologia','nomeResponsavel':'Victor Camargo','online':'1','ordem':'4','senha':null,'servicosDTO':[],'telefone':'(16) 3013 4951','url':'espacoti'},{'avaliacoesDTO':[],'bairro':'Vila Brasil','cidadeDTO':{'estadoDTO':{'id':'1','nome':'SP'},'id':'1','nome':'Ribeir\xE3o Preto','url':'ribeirao-preto'},'descricao':'Com confian\xE7a j\xE1 estabelecida, a Skin\xE3o port\xF5es atua na cidade de Ribeir\xE3o Preto e regi\xE3o, com uma equipe especializada e com a experi\xEAncia, buscando oferecer os melhores pre\xE7os, comodidade e seguran\xE7a para seus clientes.','disponibilidade':'30 min','email':'contato@skinaoportoes.com.br','endereco':'Av. Marechal Costa e Silva, 4125','foto':'img/prestadores/skinao.png','horarioAtendimento':'07:30h \xE0s 17:30h','id':'14','likes':'0','nome':'Skin\xE3o Port\xF5es','nomeResponsavel':'Luis Amado','online':'1','ordem':'7','senha':null,'servicosDTO':[{'categoriaDTO':{'descricao':null,'id':'9','nome':'Serralheria'},'descricao':'1 Port\xE3o Basculante 300 x 250 + Instala\xE7\xE3o','foto':null,'id':'54','nome':'Port\xE3o basculante 300 x 250','preco':'1590.00'},{'categoriaDTO':{'descricao':null,'id':'9','nome':'Serralheria'},'descricao':'Instala\xE7\xE3o de um port\xE3o basculantes','foto':null,'id':'55','nome':'Instala\xE7\xE3o port\xE3o basculantes','preco':'350.00'},{'categoriaDTO':{'descricao':null,'id':'9','nome':'Serralheria'},'descricao':'Troca de 2 cabos de a\xE7o para port\xE3o','foto':null,'id':'56','nome':'Troca de 2 cabos de a\xE7o para port\xE3o','preco':'250.00'},{'categoriaDTO':{'descricao':null,'id':'9','nome':'Serralheria'},'descricao':'Troca de 1 cabos de a\xE7o para port\xE3o','foto':null,'id':'57','nome':'Troca de 1 cabos de a\xE7o para port\xE3o','preco':'180.00'},{'categoriaDTO':{'descricao':null,'id':'9','nome':'Serralheria'},'descricao':'Automatiza\xE7\xE3o de port\xE3o j\xE1 instalado','foto':null,'id':'58','nome':'Automatiza\xE7\xE3o port\xE3o','preco':'680.00'},{'categoriaDTO':{'descricao':null,'id':'9','nome':'Serralheria'},'descricao':'Port\xE3o + motor + trava + Instala\xE7\xE3o','foto':null,'id':'59','nome':'Port\xE3o autom\xE1tico','preco':'2520.00'},{'categoriaDTO':{'descricao':null,'id':'4','nome':'Controle de Acesso'},'descricao':'Instala\xE7\xE3o motor de port\xE3o','foto':null,'id':'60','nome':'Instala\xE7\xE3o motor de port\xE3o','preco':'200.00'},{'categoriaDTO':{'descricao':null,'id':'4','nome':'Controle de Acesso'},'descricao':'Instala\xE7\xE3o de trava el\xE9trica','foto':null,'id':'61','nome':'Instala\xE7\xE3o de trava el\xE9trica','preco':'100.00'},{'categoriaDTO':{'descricao':null,'id':'4','nome':'Controle de Acesso'},'descricao':'Instala\xE7\xE3o de fechadura el\xE9trica','foto':null,'id':'62','nome':'Instala\xE7\xE3o de fechadura el\xE9trica','preco':'200.00'},{'categoriaDTO':{'descricao':null,'id':'10','nome':'Ferragem'},'descricao':'Porta + Instala\xE7\xE3o','foto':null,'id':'63','nome':'Instala\xE7\xE3o de porta','preco':'480.00'},{'categoriaDTO':{'descricao':null,'id':'10','nome':'Ferragem'},'descricao':'Janela + Instala\xE7\xE3o','foto':null,'id':'64','nome':'Instala\xE7\xE3o de janela','preco':'1200.00'},{'categoriaDTO':{'descricao':null,'id':'10','nome':'Ferragem'},'descricao':'Veneziana + Instala\xE7\xE3o','foto':null,'id':'65','nome':'Instala\xE7\xE3o de veneziana','preco':'1300.00'},{'categoriaDTO':{'descricao':null,'id':'10','nome':'Ferragem'},'descricao':'Vitr\xF4 + Instala\xE7\xE3o  ','foto':null,'id':'66','nome':'Instala\xE7\xE3o de vitr\xF4','preco':'300.00'},{'categoriaDTO':{'descricao':null,'id':'10','nome':'Ferragem'},'descricao':'Corrim\xE3o + Instala\xE7\xE3o','foto':null,'id':'67','nome':'Instala\xE7\xE3o de corrim\xE3o','preco':'700.00'},{'categoriaDTO':{'descricao':null,'id':'10','nome':'Ferragem'},'descricao':'Parapeito + Instala\xE7\xE3o','foto':null,'id':'68','nome':'Instala\xE7\xE3o de parapeito','preco':'1500.00'},{'categoriaDTO':{'descricao':null,'id':'10','nome':'Ferragem'},'descricao':'Escada caracol + Instala\xE7\xE3o','foto':null,'id':'69','nome':'Instala\xE7\xE3o de escada caracol','preco':'4000.00'},{'categoriaDTO':{'descricao':null,'id':'10','nome':'Ferragem'},'descricao':'Escada Reta + Instala\xE7\xE3o','foto':null,'id':'70','nome':'Instala\xE7\xE3o de escada reta','preco':'2800.00'},{'categoriaDTO':{'descricao':null,'id':'10','nome':'Ferragem'},'descricao':'Estrutura met\xE1lica para garagem; Valor apontado \xE9 para um carro','foto':null,'id':'71','nome':'Estrutura de garagem','preco':'880.00'}],'telefone':'16 9 9171 7825','url':'skinao-portoes'},{'avaliacoesDTO':[],'bairro':'Jardim Alexandre Balbo','cidadeDTO':{'estadoDTO':{'id':'1','nome':'SP'},'id':'1','nome':'Ribeir\xE3o Preto','url':'ribeirao-preto'},'descricao':'Empresa especializada em CFTV e inform\xE1tica.','disponibilidade':'40 min','email':'ajota.inf@bol.com','endereco':'R. Alberto Fagionato, 75','foto':'img/prestadores/default_cftv.png','horarioAtendimento':'08:00h \xE0s 18:00h','id':'9','likes':'0','nome':'Ajota Solu\xE7\xF5es Corporativas','nomeResponsavel':'Jos\xE9 Nilson Lopes','online':'1','ordem':'16','senha':null,'servicosDTO':[{'categoriaDTO':{'descricao':null,'id':'2','nome':'CFTV'},'descricao':'Configura\xE7\xE3o de um DVR com acesso remoto','foto':null,'id':'76','nome':'Configura\xE7\xE3o DVR com acesso remoto','preco':'150.00'},{'categoriaDTO':{'descricao':null,'id':'1','nome':'Inform\xE1tica'},'descricao':'Visita t\xE9cnica','foto':null,'id':'77','nome':'Visita t\xE9cnica','preco':'100.00'},{'categoriaDTO':{'descricao':null,'id':'1','nome':'Inform\xE1tica'},'descricao':'Formata\xE7\xE3o de um microcomputador ou notebook ou pc. Pre\xE7o com valor incluso a retirada e entrega do produto','foto':null,'id':'78','nome':'Formata\xE7\xE3o de microcomputador/notebook/pc','preco':'150.00'},{'categoriaDTO':{'descricao':null,'id':'1','nome':'Inform\xE1tica'},'descricao':'Hora t\xE9cnica extra','foto':null,'id':'79','nome':'Hora t\xE9cnica extra','preco':'70.00'},{'categoriaDTO':{'descricao':null,'id':'1','nome':'Inform\xE1tica'},'descricao':'Estrutura\xE7\xE3o de redes com servidor server 2008','foto':null,'id':'80','nome':'Estrutura\xE7\xE3o de rede','preco':'1500.00'}],'telefone':'16 9 9141 9876','url':'ajota-solucoes-corporativas'},{'avaliacoesDTO':[],'bairro':'Jd. Heitor Rigon','cidadeDTO':{'estadoDTO':{'id':'1','nome':'SP'},'id':'1','nome':'Ribeir\xE3o Preto','url':'ribeirao-preto'},'descricao':'Empresa especializada em ilumina\xE7\xE3o decorativa.','disponibilidade':'60 min','email':'fmeletricarp@hotmail.com\n','endereco':'Ribeir\xE3o Preto','foto':'img/prestadores/fm_eletrica.png','horarioAtendimento':'08:00h \xE0s 18:00h','id':'11','likes':'0','nome':'FM El\xE9trica Decor','nomeResponsavel':'Fabr\xEDcio da Silva Lahan','online':'0','ordem':'5','senha':null,'servicosDTO':[],'telefone':'16 9 88207577','url':'fm-eletrica-decor'}];
-	    var cidade = {'estadoDTO':{'id':'1','nome':'SP'},'id':'1','nome':'Ribeir\xE3o Preto','url':'ribeirao-preto'};
-	    var servico = null;
-	    var categoria = null;
-	    var categoriasPrestador = {'1':'Inform\xE1tica, CFTV, Alarme, Controle de Acesso','2':'CFTV, Inform\xE1tica','3':'Hidr\xE1ulica, El\xE9trica, Controle de Acesso, Alvenaria','14':'Serralheria, Controle de Acesso, Ferragem','4':'CFTV, Ar condicionado, El\xE9trica','9':'CFTV, Inform\xE1tica','10':'CFTV, El\xE9trica'};
-	    var ratings = {'11':0.0,'1':0.0,'2':0.0,'3':0.0,'14':0.0,'4':0.0,'7':0.0,'8':0.0,'9':0.0,'10':0.0};
-	/*]]>*/
-	</script>
-
-	<script type="text/javascript">
-		function replaceText(text) {
-			text = text.toUpperCase();
-			text = text.replace(new RegExp('[ÁÀÂÃ]','gi'), 'A');
-			text = text.replace(new RegExp('[ÉÈÊ]','gi'), 'E');
-			text = text.replace(new RegExp('[ÍÌÎ]','gi'), 'I');
-			text = text.replace(new RegExp('[ÓÒÔÕ]','gi'), 'O');
-			text = text.replace(new RegExp('[ÚÙÛ]','gi'), 'U');
-			text = text.replace(new RegExp('[Ç]','gi'), 'C');
-			text = text.toLowerCase();
-			return text;
-		}
-		if (servico != null) {
-			document.getElementById('selectServicos').value = servico;
-		}
-		if (categoria != null) {
-			document.getElementById('selectCategorias').value = categoria;
-		}
-		function selectedServicos() {
-			var selectBox = document.getElementById("selectServicos");
-			var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-			if (selectedValue != 0) {
-				var url = "prestadoresServico?cidade=" + cidade.url + '%26servico=' + selectedValue;
-				var decoded = url.value;
-				document.location.href = decodeURIComponent(url);
-			} else {
-				document.location.href = "prestadores?cidade=" + cidade.url;
-			}
-			return false;
-		}
-		function selectedCategorias() {
-			var selectBox = document.getElementById("selectCategorias");
-			var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-			if (selectedValue != 0) {
-				var url = "prestadoresCategoria?cidade=" + cidade.url + '%26categoria=' + selectedValue;
-				var decoded = url.value;
-				document.location.href = decodeURIComponent(url);
-			} else {
-				document.location.href = "prestadores?cidade=" + cidade.url;
-			}
-			return false;
-		}
-        $('input#searchFilterField').keyup(function(){
-            var searchField = $('input#searchFilterField').val();
-            var regex = new RegExp(replaceText(searchField), "i");
-            var output = '';
-              $.each(prestadores, function(key, prestador){
-              	var hasServico = false;
-            	$.each(prestador.servicosDTO, function(key2, servico){
-            		nomeServico = replaceText(servico.nome);
-            		if ((nomeServico.match(regex) != null)) {
-            			hasServico = true;
-            		}
-            	});
-            	nomePrestador = replaceText(prestador.nome);
-                if ((nomePrestador.match(regex) != null) || hasServico) {
-    				output += '<div class="col-md-4">';
-    				output += '<div class="card" style="padding-bottom: 1%; min-height: 390px;">';
-    				output += '<div class="image_services">';
-    				output += '<img src="'+prestador.foto+'" />';
-    				output += '<div class="filter">';
-    				output += '<a class="btn btn-neutral btn-simple" href="'+prestador.url+'">';
-    				output += '<i class="fa fa-bookmark-o"></i> Solicitar atendimento';
-    				output += '</a>';
-    				output += '</div>';
-    				output += '</div>';
-    				output += '<div class="content" style="position: relative; min-height: 225px;">';
-    				output += '<div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">';
-    				output += '<h4 class="title_prof"><strong>'+prestador.nome+'</strong></h4>';
-    				output += '</div>';
-					if (prestador.online == 0) {
-						output += '<p class="category"><i class="fa fa-power-off"></i>'+categoriasPrestador[prestador.id]+'</p>';
-					} else {
-						output += '<p class="category" style="color:#22b14c;"><i class="fa fa-power-off" style="color: #22b14c;"></i>'+categoriasPrestador[prestador.id]+'</p>';
-					}
-    				output += '<p class="category" style="margin-top: 5px;"><i class="fa fa-map-marker"></i>'+prestador.bairro+'</p>';
-    				output += '<div class="footer" style="margin-top: 5px; position: absolute; bottom: 10px; margin-right: 15px;">';
-    				output += '<div class="author">';
-    				output += '<i class="fa fa-clock-o"></i>';
-    				output += '<span> '+prestador.disponibilidade+'</span>';
-    				output += '</div>';
-    				output += '<div class="stats pull-right">';
-    				output += '<i class="fa fa-star" style="color:#ffc90e"></i> '+ratings[prestador.id].toFixed(1)+'';
-    				output += '</div>';
-    				output += '<div style="margin-top: 5px; width: 100%;">';
-    				output += '<a class="btn btn-simple" href="'+prestador.url+'" style="border: 1px solid;border-color: #EDA901;width: 100%;height: 50px;border-radios: 10px;background-color: #EDA901;color: #FFFFFF;line-height: 30px;">';
-    				output += '<i class="fa fa-bookmark-o"></i> Solicitar atendimento';
-    				output += '</a>';
-    				output += '</div>';
-    				output += '</div>';
-    				output += '</div>';
-    				output += '</div> <!-- end card -->';
-    				output += '</div>';
-                }
-              });
-              if (output == '') {
-            	output +='<div class="col-md-12">';
-            	output +='<h5>Não há prestadores disponíveis</h5>';
-            	output +='</div>';
-              }
-              $("#divPrestadores").html(output).fadeIn('fast');
-      });
-
-	</script>
-
-</html>
+{% endblock %}

@@ -11,4 +11,4 @@ def index(request):
     context = {
         'atividade': atividade,
     }
-    return render(request, 'home/base.html', context)
+    return render(request, 'home/home.html', context)
