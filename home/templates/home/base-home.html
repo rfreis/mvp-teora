@@ -80,7 +80,7 @@
                 <span class="icon-bar bar3"></span>
             </button>
             <a class="navbar-brand" href="/">
-                <img src="{% static '/img/logoSite_youSeg.png' %}" alt="" width="156px" style="margin-top: -13px;" />
+                <img src="{% static '/img/logoTeora.png' %}" alt="" width="156px" style="margin-top: -13px;" />
             </a>
         </div>
 
@@ -88,15 +88,7 @@
         <div class="collapse navbar-collapse">
 
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Sobre a youSeg
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/termos/">Termos e condições de uso</a></li>
-                    </ul>
-                </li>
+                
                 <li><a href="{% url 'atividade:list' %}">Atividades</a></li>
                 <li><a href="{% url 'agenda:form' %}">Contato</a></li>
             </ul>
@@ -116,120 +108,24 @@
 
     <div class="section section-gray" id="footers">
 
-        <footer class="footer footer-big footer-transparent" style="background-image: url('{% static '/img/footer01.jpg' %}')">
+        <footer class="footer footer-big footer-transparent" style="background-image: url('{% static '/img/footer02.jpg' %}')">
 
             <!-- .footer-black is another class for the footer, for the transparent version, we recommend you to change the url of the image with your favourite image.          -->
 
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-md-offset-1">
-                        <h5 class="title">youSeg</h5>
-                        <nav>
-                            <ul>
-		                        <li><a href="/termos/">Termos e condições de uso</a></li>
-				                <li><a href="/contato/">Contato</a></li>
-                            </ul>
+
                         </nav>
                     </div>
                     <div class="col-md-3 col-md-offset-1">
-                        <h5 class="title">Categorias de serviços</h5>
+
                         <nav>
-                            <ul>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Informática</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>CFTV</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Alarme</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Controle de Acesso</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Elétrica</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Hidráulica</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Alvenaria</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Serralheria</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Ferragem</th></span></li>
-                            	</th>
-                            	<th>
-	                                <li><span style="color: #9A9A9A"><th>Ar condicionado</th></span></li>
-                            	</th>
-                            </ul>
+
                         </nav>
                     </div>
                     <div class="col-md-3 col-md-offset-1">
-                        <h5 class="title">Área de cobertura</h5>
-                        <nav class="numbers">
-                        	<ul>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=ribeirao-preto"><th>Ribeirão Preto</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=serrana"><th>Serrana</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=sertaozinho"><th>Sertãozinho</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=franca"><th>Franca</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=serra-azul"><th>Serra Azul</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=viradouro"><th>Viradouro</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=pitangueiras"><th>Pitangueiras</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=pontal"><th>Pontal</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=luiz-antonio"><th>Luis Antônio</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=jardinopolis"><th>Jardinópolis</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=cravinhos"><th>Cravinhos</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=sao-simao"><th>São Simão</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=santa-rosa-de-viterbo"><th>Santa Rosa de Viterbo</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=pocos-de-caldas"><th>Poços de Caldas</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=juruce"><th>Jurucê</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=brodowski"><th>Brodowski</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=santa-barbara-doeste"><th>Santa Bárbara D&#39;Oeste</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=americana"><th>Americana</th></a></li>
-                                </th>
-                        		<th>
-                                	<li><a href="/prestadores?cidade=campinas"><th>Campinas</th></a></li>
-                                </th>
-                            </ul>
+
                         </nav>
                     </div>
                 </div>
@@ -254,7 +150,7 @@
                 </div>
 
                 <div class="copyright">
-                    © Copyright 2016 - Todos os direitos reservados para youSeg
+                    © Copyright 2017 - Todos os direitos reservados para Teora
                 </div>
             </div>
         </footer>

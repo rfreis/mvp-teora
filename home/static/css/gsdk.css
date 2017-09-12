@@ -269,16 +269,16 @@ input.ct-red + span + label + span.switch-right {
     top: 30px;
     width: 400px;
     margin: 0 auto;
-    background-color: rgba(17, 17, 17, 0.3);
+    background-color: #fd9941;
     padding: 40px 40px 20px 40px;
     border-radius: 20px;
 }
 .tituloCep {
     margin-top: 50px;
-    color: #333333;
+    color: #fd9941;
     margin-bottom: 25px;
     font-size: 30px;
-    text-shadow: 2px 2px 1px rgba(255, 255, 255, 0.9);
+
 }
 .locationCep {
     margin-top: 20px;
@@ -3510,7 +3510,7 @@ body > .navbar-collapse.collapse {
   background: -webkit-linear-gradient(top, #45c0fd 0%, #4091ff 100%);
   background: -o-linear-gradient(top, #45c0fd 0%, #4091ff 100%);
   background: -ms-linear-gradient(top, #45c0fd 0%, #4091ff 100%);
-  background: linear-gradient(to bottom, #45c0fd 0%, #4091ff 100%);
+  background: linear-gradient(to bottom, #fd9841 0%, #fd9941 100%);
 }
 
 .icon-green {

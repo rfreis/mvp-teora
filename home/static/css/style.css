@@ -1,0 +1,16 @@
+.css-selector{
+  font-family: 'Pacifico', serif;
+  color: #fd9941
+}
+
+@font-face {
+
+  font-family: "pacifico"
+  src:url("\fonts\Pacifico.ttf") format("truetype");
+
+}
+
+.pacifico-font{
+  font-family:"pacifico";
+  color: #fd9941
+    }
